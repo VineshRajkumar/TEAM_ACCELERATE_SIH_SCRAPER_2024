@@ -1,0 +1,292 @@
+stdout: 
+> sih_scraper@1.0.0 dev
+> concurrently "npm run start" "npm run algorithm"
+
+
+stdout: 
+> sih_scraper@1.0.0 newsdev
+> concurrently "npm run news" "npm run rss"
+
+
+stdout: [0] 
+stdout: 
+[0] > sih_scraper@1.0.0 start
+[0] > nodemon ai_summarization/cve_summary_ai.js
+[0] 
+
+stdout: [1] 
+[1] > sih_scraper@1.0.0 algorithm
+[1] > node algorithm_logic/algorithm.js
+[1] 
+
+stdout: [0] 
+stdout: 
+[0] > sih_scraper@1.0.0 news
+[0] > nodemon ai_summarization/news_summary_ai.js
+[0] 
+
+stdout: [1] 
+[1] > sih_scraper@1.0.0 rss
+[1] > node rss_reader_logic/rssFeedReader.js
+[1] 
+
+stdout: [0] 
+stdout: [33m[nodemon] 3.1.7[39m
+[0] [33m[nodemon] to restart at any time, enter `rs`[39m
+
+stdout: [0] [33m[nodemon] watching path(s): *.*[39m
+[0] [33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[0] [32m[nodemon] starting `node ai_summarization/cve_summary_ai.js`[39m
+
+stdout: [0] 
+stdout: [33m[nodemon] 3.1.7[39m
+[0] [33m[nodemon] to restart at any time, enter `rs`[39m
+[0] [33m[nodemon] watching path(s): *.*[39m
+[0] [33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+
+stdout: [0] [32m[nodemon] starting `node ai_summarization/news_summary_ai.js`[39m
+
+stdout: [0] 
+stdout: node:events:495
+[0]       throw er; // Unhandled 'error' event
+[0]       ^
+[0] 
+[0] Error: listen EADDRINUSE: address already in use :::3000
+[0]     at Server.setupListenHandle [as _listen2] (node:net:1811:16)
+[0]     at listenInCluster (node:net:1859:12)
+[0]     at Server.listen (node:net:1947:7)
+[0]     at Function.listen (/mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper/node_modules/express/lib/application.js:635:24)
+[0]     at file:///mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper/ai_summarization/cve_summary_ai.js:85:5
+[0]     at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+[0]     at async ModuleLoader.import (node:internal/modules/esm/loader:336:24)
+[0]     at async loadESM (node:internal/process/esm_loader:34:7)
+[0]     at async handleMainPromise (node:internal/modules/run_main:106:12)
+[0] Emitted 'error' event on Server instance at:
+[0]     at emitErrorNT (node:net:1838:8)
+[0]     at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+[0]   code: 'EADDRINUSE',
+[0]   errno: -98,
+[0]   syscall: 'listen',
+[0]   address: '::',
+[0]   port: 3000
+[0] }
+[0] 
+[0] Node.js v18.19.1
+
+stdout: [0] 
+stdout: [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+
+stdout: [0] 
+stdout: node:events:495
+[0]       throw er; // Unhandled 'error' event
+[0]       ^
+[0] 
+[0] Error: listen EADDRINUSE: address already in use :::5000
+[0]     at Server.setupListenHandle [as _listen2] (node:net:1811:16)
+[0]     at listenInCluster (node:net:1859:12)
+[0]     at Server.listen (node:net:1947:7)
+[0]     at Function.listen (/mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper/node_modules/express/lib/application.js:635:24)
+[0]     at file:///mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper/ai_summarization/news_summary_ai.js:75:5
+[0]     at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+[0]     at async ModuleLoader.import (node:internal/modules/esm/loader:336:24)
+[0]     at async loadESM (node:internal/process/esm_loader:34:7)
+[0]     at async handleMainPromise (node:internal/modules/run_main:106:12)
+[0] Emitted 'error' event on Server instance at:
+[0]     at emitErrorNT (node:net:1838:8)
+[0]     at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+[0]   code: 'EADDRINUSE',
+[0]   errno: -98,
+[0]   syscall: 'listen',
+[0]   address: '::',
+[0]   port: 5000
+[0] }
+[0] 
+[0] Node.js v18.19.1
+
+stdout: [0] 
+stdout: [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+
+stdout: [1] Link: https://thehackernews.com/2024/10/notorious-hacker-group-teamtnt-launches.html
+
+stdout: [1] Image Link: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitrezLabESR5-VGZ06cIjmOmAWM5mNKzHgZheuyRWaFj2b0h-Vf3_bOpTfzigRO8jnoB1pi7aSWvi-IBc6WO42g4VzjYeZ-gTaFKTLTSt83cold7gnkU-cTLp7_cl9dGS7zrAgSztSn2IDNt4HAX65E4ifTaC5cqMYUgz8E3N080keDN5iF1X_GmjZlg-K/s1600/coker.png
+[1] ----------------------
+
+stdout: [1] New Link saved to initial_link.txt
+
+stdout: [1] 
+stdout: Navigated to the latest CVE details page!
+
+stdout: [1] Scraped content from the NEWS page and saved to link-scraping.txt
+
+stdout: [1] http://localhost:5000/api/news-summary-ai
+
+stdout: [1] Response from server: ||Title: Notorious Hacker Group TeamTNT Launches New Cloud Attacks for Crypto Mining # Description: The infamous cryptojacking group known as TeamTNT appears to be readying for a new large-scale campaign targeting cloud-native environments for mining cryptocurrencies and renting out breached servers to third-parties. # Date: 26 October 2024||
+
+stdout: [1] Meta Llama AI did its job !!
+
+stdout: [1] News Summary Details written successfully!!
+
+stdout: [1] npm run rss exited with code 0
+
+stdout: [1] /mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper
+
+stdout: [1] oemFolder undefined
+
+stdout: [1] 
+stdout: Folder created: nvidia.com
+[1] /mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper/scraped_data/nvidia.com/initial_scraping.txt
+
+stdout: [1] 
+stdout: New data saved to initial_scraping.txt
+
+stdout: [1] Identifier counts have been written to identifiers_count.txt
+[1] First Identifier: 2024-0117
+
+stdout: [1] 
+stdout: FOUND THE LINK  https://nvidia.custhelp.com/app/answers/detail/a_id/5586
+
+stdout: [1] 
+stdout: Navigated to the CVE details page!
+
+stdout: [1] Scraped content from the CVE details page and saved to link-scraping.txt
+
+stdout: [1] http://localhost:3000/api/cve-summary-ai
+
+stdout: [1] Response from server: Here is the extracted vulnerability report:
+[1] 
+[1] ||Product Name: NVIDIA GPU Display Driver # Product Version: NA # OEM Name: NVIDIA # Severity Level (Critical/High): High # Vulnerability: CVE-2024-0126 NVIDIA GPU Display Driver for Windows and Linux contains a vulnerability which could allow a privileged attacker to escalate permissions. A successful exploit of this vulnerability might lead to code execution, denial of service, escalation of privileges, information disclosure, and data tampering. # Mitigation Strategy: See Security Updates for NVIDIA GPU Display Driver # Published Date: 22 October 2024 # Unique ID: CVE-2024-0126, CVE-2024-0127, CVE-2024-0128||
+
+stdout: [1] Meta Llama AI did its job !!
+[1] Cve Summary Details written successfully!!
+
+stdout: [1] npm run algorithm exited with code 0
+
+stdout: 
+> sih_scraper@1.0.0 newsdev
+> concurrently "npm run news" "npm run rss"
+
+
+stdout: 
+> sih_scraper@1.0.0 dev
+> concurrently "npm run start" "npm run algorithm"
+
+
+stdout: [0] 
+stdout: 
+[0] > sih_scraper@1.0.0 news
+[0] > nodemon ai_summarization/news_summary_ai.js
+[0] 
+[1] 
+[1] > sih_scraper@1.0.0 rss
+[1] > node rss_reader_logic/rssFeedReader.js
+[1] 
+
+stdout: [0] 
+stdout: 
+[0] > sih_scraper@1.0.0 start
+[0] > nodemon ai_summarization/cve_summary_ai.js
+[0] 
+
+stdout: [1] 
+stdout: 
+[1] > sih_scraper@1.0.0 algorithm
+[1] > node algorithm_logic/algorithm.js
+[1] 
+
+stdout: [0] 
+stdout: [33m[nodemon] 3.1.7[39m
+[0] [33m[nodemon] to restart at any time, enter `rs`[39m
+[0] 
+stdout: [33m[nodemon] watching path(s): *.*[39m
+[0] [33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+
+stdout: [0] [32m[nodemon] starting `node ai_summarization/news_summary_ai.js`[39m
+
+stdout: [0] 
+stdout: [33m[nodemon] 3.1.7[39m
+[0] [33m[nodemon] to restart at any time, enter `rs`[39m
+[0] [33m[nodemon] watching path(s): *.*[39m
+[0] [33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[0] [32m[nodemon] starting `node ai_summarization/cve_summary_ai.js`[39m
+
+stdout: [0] 
+stdout: node:events:495
+[0]       throw er; // Unhandled 'error' event
+[0]       ^
+[0] 
+[0] Error: listen EADDRINUSE: address already in use :::5000
+[0]     at Server.setupListenHandle [as _listen2] (node:net:1811:16)
+[0]     at listenInCluster (node:net:1859:12)
+[0]     at Server.listen (node:net:1947:7)
+[0]     at Function.listen (/mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper/node_modules/express/lib/application.js:635:24)
+[0]     at file:///mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper/ai_summarization/news_summary_ai.js:75:5
+[0]     at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+[0]     at async ModuleLoader.import (node:internal/modules/esm/loader:336:24)
+[0]     at async loadESM (node:internal/process/esm_loader:34:7)
+[0]     at async handleMainPromise (node:internal/modules/run_main:106:12)
+[0] Emitted 'error' event on Server instance at:
+[0]     at emitErrorNT (node:net:1838:8)
+[0]     at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+[0]   code: 'EADDRINUSE',
+[0]   errno: -98,
+[0]   syscall: 'listen',
+[0]   address: '::',
+[0]   port: 5000
+[0] }
+[0] 
+[0] Node.js v18.19.1
+
+stdout: [0] node:events:495
+[0]       throw er; // Unhandled 'error' event
+[0]       ^
+[0] 
+[0] Error: listen EADDRINUSE: address already in use :::3000
+[0]     at Server.setupListenHandle [as _listen2] (node:net:1811:16)
+[0]     at listenInCluster (node:net:1859:12)
+[0]     at Server.listen (node:net:1947:7)
+[0]     at Function.listen (/mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper/node_modules/express/lib/application.js:635:24)
+[0]     at file:///mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper/ai_summarization/cve_summary_ai.js:85:5
+[0]     at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+[0]     at async ModuleLoader.import (node:internal/modules/esm/loader:336:24)
+[0]     at async loadESM (node:internal/process/esm_loader:34:7)
+[0]     at async handleMainPromise (node:internal/modules/run_main:106:12)
+[0] Emitted 'error' event on Server instance at:
+[0]     at emitErrorNT (node:net:1838:8)
+[0]     at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+[0]   code: 'EADDRINUSE',
+[0]   errno: -98,
+[0]   syscall: 'listen',
+[0]   address: '::',
+[0]   port: 3000
+[0] }
+[0] 
+[0] Node.js v18.19.1
+
+stdout: [0] [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+
+stdout: [0] 
+stdout: [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+
+stdout: [1] Link: https://thehackernews.com/2024/10/notorious-hacker-group-teamtnt-launches.html
+[1] Image Link: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitrezLabESR5-VGZ06cIjmOmAWM5mNKzHgZheuyRWaFj2b0h-Vf3_bOpTfzigRO8jnoB1pi7aSWvi-IBc6WO42g4VzjYeZ-gTaFKTLTSt83cold7gnkU-cTLp7_cl9dGS7zrAgSztSn2IDNt4HAX65E4ifTaC5cqMYUgz8E3N080keDN5iF1X_GmjZlg-K/s1600/coker.png
+
+stdout: [1] ----------------------
+
+stdout: [1] 
+stdout: No changes detected. Data not saved.
+
+stdout: [1] npm run rss exited with code 0
+
+stdout: [1] /mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper
+
+stdout: [1] Similarity of OEM Name Matching with exixsting folders:-  1
+
+stdout: [1] oemFolder nvidia.com
+[1] Existing folder found: nvidia.com
+[1] /mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper/scraped_data/nvidia.com/initial_scraping.txt
+
+stdout: [1] 
+stdout: No changes detected. Data not saved.
+
+stdout: [1] npm run algorithm exited with code 0
+

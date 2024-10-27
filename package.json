@@ -1,0 +1,45 @@
+{
+  "dependencies": {
+    "@ai-sdk/openai": "^0.0.68",
+    "@google/generative-ai": "^0.21.0",
+    "ai": "^3.4.16",
+    "axios": "^1.7.7",
+    "detect-port": "^1.6.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "fs": "^0.0.1-security",
+    "groq": "^3.62.2",
+    "groq-sdk": "^0.7.0",
+    "node-port-check": "^2.0.1",
+    "nodemon": "^3.1.7",
+    "openai": "^4.68.1",
+    "path": "^0.12.7",
+    "puppeteer": "^23.6.0",
+    "puppeteer-core": "^23.6.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "xml2js": "^0.6.2"
+  },
+  "name": "sih_scraper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "news": "nodemon ai_summarization/news_summary_ai.js",
+    "start": "nodemon ai_summarization/cve_summary_ai.js",
+    "algorithm": "node algorithm_logic/algorithm.js",
+    "rss": "node rss_reader_logic/rssFeedReader.js",
+    "dev": "concurrently \"npm run start\" \"npm run algorithm\"",
+    "newsdev": "concurrently \"npm run news\" \"npm run rss\"",
+    "servers": "concurrently \"npm run news\" \"npm run start\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  },
+  "IMPORTANT_READ_THIS_comment": "IF YOU ARE RUNNING NEWSDEV IN VS CODE CMD THEN PUT THIS IN newsdev scripts (REMOVE THE SLASH AT THE START OF concurrently) - \"concurrently \"npm run news\" \"npm run rss\" \"npm run start\"",
+  "another_comment": "I HAVE REMOVED IT FOR CRON JOBS",
+  "description": ""
+}
