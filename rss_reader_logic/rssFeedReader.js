@@ -525,7 +525,7 @@ const rssFeeds = [
   // { url: "https://www.malwarebytes.com/blog/feed/index.xml", type: "NOTCVE" },
   // { url: "https://www.wired.com/feed/category/security/latest/rss", type: "NOTCVE" },
     { url: "https://feeds.feedburner.com/TheHackersNews", type: "NOTCVE" },
-  //   { url: "https://hackread.com/feed/", type: "NOTCVE" },
+    //   { url: "https://hackread.com/feed/", type: "NOTCVE" },
   // { url: "https://rss.packetstormsecurity.com/", type: "NOTCVE"},
   // { url: "https://threatpost.com/feed/", type:"NOTCVE"},
     // { url: "https://www.bleepingcomputer.com/feed/", type: "NOTCVE" }, //bleepingcomputer DOESNOT RUN IN HEADLESS TRUE IT RUNS ONLY IN HEAD LESS FALSE
