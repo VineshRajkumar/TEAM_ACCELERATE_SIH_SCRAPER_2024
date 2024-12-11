@@ -18,6 +18,7 @@
     "puppeteer-core": "^23.6.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "sih-database-lib": "github:Pyr0de/sih-db",
     "xml2js": "^0.6.2"
   },
   "name": "sih_scraper",
@@ -37,6 +38,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/pg": "^8.11.10",
     "concurrently": "^9.0.1"
   },
   "IMPORTANT_READ_THIS_comment": "IF YOU ARE RUNNING NEWSDEV IN VS CODE CMD THEN PUT THIS IN newsdev scripts (REMOVE THE SLASH AT THE START OF concurrently) - \"concurrently \"npm run news\" \"npm run rss\" \"npm run start\"",

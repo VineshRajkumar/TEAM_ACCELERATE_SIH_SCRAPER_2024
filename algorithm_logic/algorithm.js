@@ -1,12 +1,16 @@
 import puppeteer from "puppeteer";
-import fs from "fs";
+import fs, { link } from "fs";
 import path from "path";
 import { error } from "console";
 import axios from "axios";
 import dotenv from "dotenv";
+import { sendMail } from "sih-database-lib";
+import { getOEMLinks } from "../database/getOEMLinks.js";
+import { sendDataToDB } from "../database/sendDataToDB.js";
+import { sendVulnReport } from "../database/sendVulnReport.js";
 dotenv.config();
 
-async function algorithm(url, type) {
+async function algorithm(name, url, type) {
   if (type == "CVE") {
     try {
       const browser = await puppeteer.launch({ headless: true }); // Launch browser
@@ -265,7 +269,7 @@ async function algorithm(url, type) {
             console.log("Response from server:", response.data);
             return response.data;
           } catch (error) {
-            console.error("Error sending input:", error);
+            console.error("\x1b[31mError sending input:", error);
           }
         };
 
@@ -282,31 +286,61 @@ async function algorithm(url, type) {
         if (!fs.existsSync(aisummariesFolder)) {
           fs.mkdirSync(aisummariesFolder, { recursive: true });
         }
+
+        const dbdataresult = await sendDataToDB(name, reportResponse);
+        if(!dbdataresult){
+          console.log("\x1b[31mData was not sent to the database."); // ANSI code for RED color is used
+          return;
+        }
+
         const cvesummaryFile = path.join(aisummariesFolder, "cve-summary.txt");
         fs.writeFileSync(cvesummaryFile, reportResponse, "utf8");
 
-        console.log("Meta Llama AI did its job !!");
-        console.log("Cve Summary Details written successfully!!");
+        console.log("\x1b[32mMeta Llama AI did its job !!");//ANSI CODE IS USED FOR COLOR  GREEN
+        console.log("\x1b[32mCve Summary Details written successfully!!");//ANSI CODE IS USED FOR COLOR  GREEN
+
+        sendVulnReport("gthalakottur@gmail.com",`${folderName} Vulnerability Report`, dbdataresult)
+
+
       } else {
-        console.log("No link found for the first identifier!");
+        console.log("\x1b[33mNo link found for the first identifier!");//ANSI CODE IS USED FOR COLOR YELLOW
       }
 
       await browser.close(); // Close the browser
     } catch (error) {
-      console.log("ERROR", error);
+      if(error.message.includes('net::ERR_HTTP2_PROTOCOL_ERROR')){
+        console.error(`\x1b[31mError with URL: ${url} - Issue is related to headless mode`); //ANSI CODE IS USED FOR COLOR RED \x1b[31m
+      }
+      else{
+        console.log("ERROR", error);
+      }
     }
   }
 }
 
+const oemlinks = await getOEMLinks();
+
 const urls = [
-  //OEMS
-  // { url: "https://huntr.com/bounties/hacktivity", type: "CVE" },
-  // { url: "https://www.intel.com/content/www/us/en/security-center/default.html",type: "CVE"},
-  // // { url: "https://www.amd.com/en/resources/product-security.html", type: "CVE" },  //AMD DOESNOT RUN IN HEADLESS TRUE IT RUNS ONLY IN HEAD LESS FALSE
-  { url: "https://www.nvidia.com/en-us/security/", type: "CVE" },
-  // { url: 'https://msrc.microsoft.com/update-guide/vulnerability', type: "CVE" },
   
+  //OEMS
+  // { name: "Dell", url: "https://www.dell.com/support/security/en-in", type: "CVE" },
+  // { name: "Intel", url: "https://www.intel.com/content/www/us/en/security-center/default.html",type: "CVE"},
+  // // {  name: "AMD", url: "https://www.amd.com/en/resources/product-security.html", type: "CVE" },  //AMD DOESNOT RUN IN HEADLESS TRUE IT RUNS ONLY IN HEAD LESS FALSE
+  // { name:"NVIDIA" ,url: "https://www.nvidia.com/en-us/security/", type: "CVE" },
+  // { name:"Microsoft",url: 'https://msrc.microsoft.com/update-guide/vulnerability', type: "CVE" },
+    
 ];
 
-// urls.forEach((url) => algorithm(url));
-urls.forEach(({ url, type }) => algorithm(url, type));
+urls.forEach(({ name, url, type }) => algorithm(name, url, type));
+
+//**FOR GETTING LINKS FROM DATABASE UNDO THE COMMENT IN THIS 
+// for (const {name,url,type} of oemlinks){
+
+//     if(type === "CVE"||type === "BOTH"){
+//       await algorithm(name,url, type);
+//     }
+//     else{
+//       break;
+//     }
+  
+// }

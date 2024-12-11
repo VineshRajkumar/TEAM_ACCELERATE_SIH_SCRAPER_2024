@@ -3,7 +3,7 @@ import { spawn } from 'child_process';
 
 import { cwd } from 'process'; // Import current working directory for cron jobs
 
-const projectDir = '/mnt/c/Users/aspir/OneDrive/Desktop/SIH_Scraper'; // Set this to the directory of your package.json for cron jobs
+const projectDir = '/mnt/c/Users/aspir/OneDrive/Desktop/Hackathon/SIH/SIH_Scraper'; // Set this to the directory of your package.json for cron jobs
 
 const runCommand = (command) => {
   const cmd = spawn(command, { shell: true, cwd: projectDir });

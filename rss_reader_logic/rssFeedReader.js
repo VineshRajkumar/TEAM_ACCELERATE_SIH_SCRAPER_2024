@@ -7,11 +7,13 @@ import xml2js from "xml2js";
 import fs, { mkdir } from "fs";
 import path from "path";
 import dotenv from "dotenv";
-
+import { sendMail } from "sih-database-lib";
+import { getOEMLinks } from "../database/getOEMLinks.js";
+import { sendDataToDB } from "../database/sendDataToDB.js";
 dotenv.config();
 
 // Function to fetch and parse RSS feed for NEWS ONLY HERE
-async function fetchRSSFeed(url, type) {
+async function fetchRSSFeed(name,url, type) {
   try {
     const response = await axios.get(url);
     const xmlData = response.data;
@@ -162,7 +164,7 @@ async function fetchRSSFeed(url, type) {
         );
 
         // CATEGORIZING AND PASSING THROUGH AI
-        if (type == "CVE") {
+        if (type == "CVE"||type == "BOTH") {
           const report = async (input) => {
             try {
               console.log(
@@ -195,6 +197,13 @@ async function fetchRSSFeed(url, type) {
           if (!fs.existsSync(aisummariesFolder)) {
             fs.mkdirSync(aisummariesFolder, { recursive: true });
           }
+
+          const dbdataresult = await sendDataToDB(name,reportResponse);
+          if(!dbdataresult){
+            console.log("\x1b[31mData was not sent to the database."); // ANSI code for RED color is used
+            return;
+          }
+
           const cvesummaryFile = path.join(
             aisummariesFolder,
             "cve-summary.txt"
@@ -474,6 +483,14 @@ async function fetchRSSFeed(url, type) {
           if (!fs.existsSync(aisummariesFolder)) {
             fs.mkdirSync(aisummariesFolder, { recursive: true });
           }
+
+          // **CHNAGE THIS ACCORDING TO NEWS IF SEND NEWS TO DB FUNCTION IS MADE  
+          // const dbdataresult = await sendDataToDB(name,reportResponse);
+          // if(!dbdataresult){
+          //   console.log("\x1b[31mData was not sent to the database."); // ANSI code for RED color is used
+          //   return;
+          // }
+
           const newssummaryFile = path.join(
             aisummariesFolder,
             "news-summary.txt"
@@ -489,11 +506,19 @@ async function fetchRSSFeed(url, type) {
 
           console.log("Meta Llama AI did its job !!");
           console.log("News Summary Details written successfully!!");
+
+          
+          // sendVulnReport("studyemail569@gmail.com",`${folderName} Vulnerability Report`, dbdataresult)  ** MODIFY IT ACCORDING TO NEWS ONCE THE NEWS DATABASE IS MADE 
         }
 
         await browser.close(); // Close the browser
       } catch (error) {
-        console.log("ERROR", error);
+        if(error.message.includes('net::ERR_HTTP2_PROTOCOL_ERROR')){
+          console.error(`\x1b[31mError with URL: ${url} - Issue is related to headless mode`); //ANSI CODE IS USED FOR COLOR RED \x1b[31m
+        }
+        else{
+          console.log("ERROR", error);
+        }
       }
     } else {
       console.error("Link Not Found !!", error);
@@ -506,30 +531,42 @@ async function fetchRSSFeed(url, type) {
 // Array of RSS feed objects with URLs and types
 const rssFeeds = [
   // CVE ONES - BY AI cve summaries
-  // { url: "https://www.debian.org/security/dsa", type: "CVE" },
-  // { url: "https://seclists.org/rss/fulldisclosure.rss", type: "CVE" },
-  // { url: "https://www.exploit-db.com/rss.xml", type: "CVE" },
+  // { "name": "Debian", "url": "https://www.debian.org/security/dsa", "type": "BOTH" },
+  // { "name": "Full Disclosure", "url": "https://seclists.org/rss/fulldisclosure.rss", "type": "BOTH" },
+  // { "name": "Exploit DB", "url": "https://www.exploit-db.com/rss.xml", "type": "BOTH" },
 
   // // // SOMETIMES NEWS/CVE - BY AI news summary
-  // // { url: "https://www.reddit.com/r/netsec/.rss", type: "NEWS&CVE" },
-  // { url: 'https://www.reddit.com/r/netsec/new/.rss', type: "NEWS&CVE" },
-  // // { url: 'https://www.reddit.com/r/netsec/rising/.rss', type: "NEWS&CVE" },
+  // { "name": "Reddit (NetSec)", "url": "https://www.reddit.com/r/netsec/.rss", "type": "NEWS&CVE" },
+  // { "name": "Reddit (NetSec_New)", "url": "https://www.reddit.com/r/netsec/new/.rss", "type": "NEWS&CVE" },
+  // { "name": "Reddit (NetSec_Rising)", "url": "https://www.reddit.com/r/netsec/rising/.rss", "type": "NEWS&CVE" },
 
-  // // { url: "https://www.reddit.com/r/cybersecurity/.rss", type: "NEWS&CVE" },
-  // { url: 'https://www.reddit.com/r/cybersecurity/new/.rss', type: "NEWS&CVE" },
-  // // { url: 'https://www.reddit.com/r/cybersecurity/top/.rss', type: "NEWS&CVE" },
-  // // { url: 'https://www.reddit.com/r/cybersecurity/rising/.rss', type: "NEWS&CVE" },
+  // { "name": "Reddit (Cybersecurity)", "url": "https://www.reddit.com/r/cybersecurity/.rss", "type": "NEWS&CVE" },
+  // { "name": "Reddit (Cybersecurity_New)", "url": "https://www.reddit.com/r/cybersecurity/new/.rss", "type": "NEWS&CVE" },
+  // { "name": "Reddit (Cybersecurity_Top)", "url": "https://www.reddit.com/r/cybersecurity/top/.rss", "type": "NEWS&CVE" },
+  // { "name": "Reddit (Cybersecurity_Rising)", "url": "https://www.reddit.com/r/cybersecurity/rising/.rss", "type": "NEWS&CVE" },
  
 
   // // // NEWS FEEDS - BY AI news summary
-  // { url: "https://www.malwarebytes.com/blog/feed/index.xml", type: "NOTCVE" },
-  // { url: "https://www.wired.com/feed/category/security/latest/rss", type: "NOTCVE" },
-    { url: "https://feeds.feedburner.com/TheHackersNews", type: "NOTCVE" },
-    //   { url: "https://hackread.com/feed/", type: "NOTCVE" },
-  // { url: "https://rss.packetstormsecurity.com/", type: "NOTCVE"},
-  // { url: "https://threatpost.com/feed/", type:"NOTCVE"},
-    // { url: "https://www.bleepingcomputer.com/feed/", type: "NOTCVE" }, //bleepingcomputer DOESNOT RUN IN HEADLESS TRUE IT RUNS ONLY IN HEAD LESS FALSE
+  // { "name": "Malwarebytes", "url": "https://www.malwarebytes.com/blog/feed/index.xml", "type": "NOTCVE" },
+  // { "name": "Wired", "url": "https://www.wired.com/feed/category/security/latest/rss", "type": "NOTCVE" },
+  // { "name": "The Hacker News", "url": "https://feeds.feedburner.com/TheHackersNews", "type": "NOTCVE" },
+  // { "name": "HackRead", "url": "https://hackread.com/feed/", "type": "NOTCVE" },
+  // { "name": "Packet Storm", "url": "https://rss.packetstormsecurity.com/", "type": "NOTCVE" },
+  // { "name": "ThreatPost", "url": "https://threatpost.com/feed/", "type": "NOTCVE" },
+  // { "name": "Bleeping Computer", "url": "https://www.bleepingcomputer.com/feed/", "type": "NOTCVE" } //bleepingcomputer DOESNOT RUN IN HEADLESS TRUE IT RUNS ONLY IN HEAD LESS FALSE
+
+    
 ];
 
 // Fetch and display feeds from all URLs
-rssFeeds.forEach(({ url, type }) => fetchRSSFeed(url, type));
+rssFeeds.forEach(({ name, url, type }) => fetchRSSFeed(name, url, type));
+
+//**FOR GETTING LINKS FROM DATABASE UNDO THE COMMENT IN THIS 
+// const newslinks = await getOEMLinks();
+// for (const {name, url, type} of newslinks){
+
+//   if(type === "NEWS&CVE"||type === "NOTCVE"||type === "BOTH"){
+    // await fetchRSSFeed(name, url, type);
+//   }
+
+// }
