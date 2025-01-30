@@ -4,7 +4,7 @@ The Official SIH_SCRAPER of TEAM ACCELERATE for SIH Hackathon 2024
 This will form the base for AlertMe Threat Detection System.
 -
 
-# 🚀 Near Real-Time Vulnerability Threat Detection System
+# Near Real-Time Vulnerability Threat Detection System
 
 ![image](https://github.com/user-attachments/assets/38eef91f-26e7-4306-bf6f-3cc286991f07)
 ![image](https://github.com/user-attachments/assets/0124f141-bc57-43d8-b99b-888a24d1593f)
