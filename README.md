@@ -2,7 +2,9 @@
 The Official SIH_SCRAPER of TEAM ACCELERATE for SIH Hackathon 2024 
 
 This will form the base for AlertMe Threat Detection System.
+
 -
+
 # 🚀 Near Real-Time Vulnerability Threat Detection System
 
 ![image](https://github.com/user-attachments/assets/38eef91f-26e7-4306-bf6f-3cc286991f07)
@@ -70,11 +72,11 @@ This project deepened our knowledge in:
 - Expand to **more websites** and improve scraping efficiency.
 
 ## 📷 Screenshots
-![Screenshot 1](![image](https://github.com/user-attachments/assets/8754f75d-b779-440a-8802-c672144761f4))
-![Screenshot 2](![image](https://github.com/user-attachments/assets/691d8928-c591-44db-9900-bbb92f1a34d1))
-![Screenshot 3](![image](https://github.com/user-attachments/assets/ef3f3e50-5646-4ce0-9bf2-63143582923d))
-![Screenshot 4](![image](https://github.com/user-attachments/assets/e459181e-ae6e-430a-b6fb-a514c58de7fb))
-![Screenshot 5](![image](https://github.com/user-attachments/assets/e6112ffd-0f2c-4c55-a7d0-3e42a889c3b4))
+![image](https://github.com/user-attachments/assets/8754f75d-b779-440a-8802-c672144761f4)
+![image](https://github.com/user-attachments/assets/691d8928-c591-44db-9900-bbb92f1a34d1)
+![image](https://github.com/user-attachments/assets/ef3f3e50-5646-4ce0-9bf2-63143582923d)
+![image](https://github.com/user-attachments/assets/e459181e-ae6e-430a-b6fb-a514c58de7fb)
+![image](https://github.com/user-attachments/assets/e6112ffd-0f2c-4c55-a7d0-3e42a889c3b4)
 
 ## 🙌 Acknowledgments
 
