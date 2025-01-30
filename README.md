@@ -5,8 +5,8 @@ This will form the base for AlertMe Threat Detection System.
 -
 # 🚀 Near Real-Time Vulnerability Threat Detection System
 
-![Project Banner](![image](https://github.com/user-attachments/assets/38eef91f-26e7-4306-bf6f-3cc286991f07))
-![Project Banner](![image](https://github.com/user-attachments/assets/0124f141-bc57-43d8-b99b-888a24d1593f))
+![image](https://github.com/user-attachments/assets/38eef91f-26e7-4306-bf6f-3cc286991f07)
+![image](https://github.com/user-attachments/assets/0124f141-bc57-43d8-b99b-888a24d1593f)
 
 ## 📌 Overview
 This project was developed as part of Smart India Hackathon (SIH) 2024, tackling **Problem Statement 1676**. Our goal was to create a **near real-time vulnerability monitoring system** that detects and alerts users about critical vulnerabilities in OEM equipment (IT & OT) faster than the **National Vulnerability Database (NVD)**.
