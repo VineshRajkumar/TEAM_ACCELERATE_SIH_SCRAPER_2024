@@ -299,7 +299,7 @@ async function algorithm(name, url, type) {
         console.log("\x1b[32mMeta Llama AI did its job !!");//ANSI CODE IS USED FOR COLOR  GREEN
         console.log("\x1b[32mCve Summary Details written successfully!!");//ANSI CODE IS USED FOR COLOR  GREEN
 
-        sendVulnReport("gthalakottur@gmail.com",`${folderName} Vulnerability Report`, dbdataresult)
+        sendVulnReport("vineshrajkumar23@gmail.com",`${folderName} Vulnerability Report`, dbdataresult)
 
 
       } else {
